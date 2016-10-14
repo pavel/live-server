@@ -10,6 +10,7 @@ var fs = require('fs'),
 	send = require('send'),
 	open = require('opn'),
 	es = require("event-stream"),
+	rewrite = require("connect-modrewrite"),
 	os = require('os'),
 	watchr = require('watchr');
 require('colors');
@@ -157,6 +158,7 @@ LiveServer.start = function(options) {
 	var https = options.https || null;
 	var proxy = options.proxy || [];
 	var middleware = options.middleware || [];
+	var rewriteRules = options.rewrite;
 
 	// Setup a web server
 	var app = connect();
@@ -188,9 +190,12 @@ LiveServer.start = function(options) {
 			credentials: true // allowing requests with credentials
 		}));
 	}
+	if (rewriteRules) {
+		app.use(rewrite(rewriteRules));
+	}
 	mount.forEach(function(mountRule) {
 		var mountPath = path.resolve(process.cwd(), mountRule[1]);
-		if (!options.watch) // Auto add mount paths to wathing but only if exclusive path option is not given
+		if (!options.watch) // Auto add mount paths to watching but only if exclusive path option is not given
 			watchPaths.push(mountPath);
 		app.use(mountRule[0], staticServer(mountPath));
 		if (LiveServer.logLevel >= 1)

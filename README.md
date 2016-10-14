@@ -61,6 +61,7 @@ Command line parameters:
 * `--cors` - Enables CORS for any origin (reflects request origin, requests with credentials are supported)
 * `--https=PATH` - PATH to a HTTPS configuration module
 * `--proxy=ROUTE:URL` - proxy all requests for ROUTE to URL
+* `--rewrite=RULE` - uses [connect-modrewrite](https://github.com/tinganho/connect-modrewrite) middleware to perform URL rewrite (see the middleware page for `RULE` syntax)
 * `--help | -h` - display terse usage hint and exit
 * `--version | -v` - display version and exit
 
