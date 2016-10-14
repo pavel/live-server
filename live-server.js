@@ -125,7 +125,8 @@ for (var i = process.argv.length - 1; i >= 2; --i) {
 		process.argv.splice(i, 1);
 	}
 	else if (arg.indexOf("--rewrite=") > -1) {
-		opts.rewrite.push(arg.substring(10));
+		// unshift is used here because we go from end to start when parsings args
+		opts.rewrite.unshift(arg.substring(10));
 		process.argv.splice(i, 1);
 	}
 	else if (arg === "--help" || arg === "-h") {
