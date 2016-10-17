@@ -24,7 +24,8 @@
     "opn": "latest",
     "proxy-middleware": "latest",
     "send": "latest",
-    "serve-index": "^1.7.2"
+    "serve-index": "^1.7.2",
+    "spdy": "^3.4.4"
   },
   "devDependencies": {
     "mocha": "^2.3.3",
